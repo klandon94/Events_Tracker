@@ -40,6 +40,7 @@ public class Event {
 	private String city;
 	@NotEmpty(message="State is required")
 	private String state;
+	private String image;
 	@Column(updatable=false)
 	private Date createdAt;
 	private Date updatedAt;
@@ -62,11 +63,12 @@ public class Event {
 	
 	public Event() {}
 	
-	public Event(String name, Date date, String city, String state, User hoster) {
+	public Event(String name, Date date, String city, String state, String image, User hoster) {
 		this.name = name;
 		this.date = date;
 		this.city = city;
 		this.state = state;
+		this.image = image;
 		this.hoster = hoster;
 	}
 	
@@ -118,6 +120,14 @@ public class Event {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+	
+	public String getImage() {
+		return image;
+	}
+	
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public User getHoster() {

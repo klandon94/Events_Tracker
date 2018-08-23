@@ -8,13 +8,34 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Edit event ${event.id}</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<style>
-		#editform{
-			width:25%;
+		body{
+			background-color:lightgoldenrodyellow;
 		}
-		h1, h3, #editform{
+		#header{
+			display:flex;
+			justify-content:space-between;
+			width:90%;
+			margin:0 auto;
+		}
+		.event{
+			font-size:35px;
+			font-weight:bold;
+		}
+		#editform{
+			width:50%;
+		}
+		h3{
+			text-align:center;
+		}
+		h1, #editform{
 			margin-left:30px;
+		}
+		#edit{
+			border:5px dotted green;
+			width:50%;
+			margin: 0 auto;
 		}
 		.error{
 			color:red;
@@ -23,11 +44,13 @@
 	</style>
 </head>
 <body>
-
-	<h1>${event.name}</h1>
+	<div id="header">
+		<span class="event">${event.name}</span>
+		<a href="/events" id="home" class="btn btn-primary">Home page</a>
+	</div>
 	<br>
+	<div id="edit">
 	<h3>Edit event</h3>
-	
 	<form:form method="post" action="/events/edit/${event.id}" modelAttribute="event" id="editform">
 		<input type="hidden" name="_method" value="put">
 		<div class="form-group">
@@ -47,12 +70,12 @@
            	<br>            	
            	<form:errors path="city" cssClass="error"/>
            	<form:input path="city" cssClass="form-control"/>
-           </div>
+        </div>
 		<div class="form-group">
 			<form:label path="state">State:</form:label>
            	<form:errors path="state" cssClass="error"/>
            	<form:select path="state" cssClass="form-inline">
-			  <option value="" selected="selected">Select a State</option>
+			  <option value="">Select a State</option>
 			  <option value="AL">Alabama</option>
 			  <option value="AK">Alaska</option>
 			  <option value="AZ">Arizona</option>
@@ -106,8 +129,13 @@
 			  <option value="WY">Wyoming</option>
 			</form:select>
 		</div>
+		<div class="form-group">
+           	<form:label path="image">Image:</form:label>
+           	<br>            	
+           	<form:input path="image" cssClass="form-control"/>
+        </div>
 		<input type="submit" value="Edit" class="btn btn-primary">
 	</form:form>
-
+	</div>
 </body>
 </html>

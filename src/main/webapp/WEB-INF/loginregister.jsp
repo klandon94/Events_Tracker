@@ -7,12 +7,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Login and Registration</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" href="/css/loginregister.css">
 </head>
 <body>
 	
-<h1>Login and Registration</h1>
+<h1 id="header">EVENTS TRACKER</h1>
 <span class='error' style='margin-left:75px'><c:out value="${badlogin}"/></span>
 <span class='success' style='margin-left:75px'><c:out value="${logoutsuccess}"/></span>
 
@@ -132,6 +132,7 @@
             </div>
             <button type="submit" value='Login' class='btn btn-success'>Login!</button>
         </form>
+        <img id="calendar" src="https://brickcitylive.com/wp-content/uploads/2013/09/calendar-icon.png" style="height:400px; margin-top:50px">
     </div>
 </div>
 

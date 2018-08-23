@@ -42,13 +42,14 @@ public class EventService {
 		else return null;
 	}
 	
-	public void updateEvent(Long id, String name, Date date, String city, String state) {
+	public void updateEvent(Long id, String name, Date date, String city, String state, String image) {
 		Optional<Event> event = eventRepo.findById(id);
 		if (event.isPresent()) {
 			event.get().setName(name);
 			event.get().setDate(date);
 			event.get().setCity(city);
 			event.get().setState(state);
+			event.get().setImage(image);
 			eventRepo.save(event.get());
 		}
 	}

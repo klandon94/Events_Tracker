@@ -8,52 +8,83 @@
 <head>
 	<meta charset="UTF-8">
 	<title>${event.name}</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<style>
-		h1{
-			margin-top:50px;
+		#home{
+			margin: 20px 0 0 20px;
 		}
-		h1, #info p, #joiners{
-			margin-left:50px;
+		body{
+			background-color:lightgoldenrodyellow;
+		}
+		h1{
+			margin-bottom:50px;
+		}
+		#info{
+			margin: 25px 0 0 15px;
+			border:5px dotted green;
+			padding:15px;
 		}
 		#info p{
 			font-size:20px;
 		}
+		.labels{
+			font-weight:bold;
+			font-style:italic;
+			text-decoration:underline;
+		}
 		#container{
 			display:flex;
-			justify-content:space-between;
-		}
-		#messages{
-			margin-right:200px;
+			justify-content:space-around;
 		}
 		#wall{
 			width:500px;
 			overflow:scroll;
 			border:2px solid black;
+			height:350px;
+			padding:15px;
+		}
+		#pic{
+			margin-top:150px;
+			width:400px;
 			height:300px;
+		}
+		.poster{
+			font-weight:bold;
+			color:blue;
+		}
+		.message{
+			border-bottom:double;
 		}
 		.error{
 			color:red;
 			font-weight:bold;
 		}
+		.footer {
+		    position: fixed;
+		    left: 0;
+		    bottom: 0;
+		    width: 100%;
+		    background-color: blue;
+		    color: white;
+		    text-align: center;
+		}
 	</style>
 </head>
 <body>
-	<a href="/events">Home page</a>
-	<h1>${event.name}</h1>
-	<br>
+	<a href="/events" id="home" class="btn btn-primary">Home page</a>
 	<div id="container">
 		<div id="info">
-			<p><b>Host:</b> ${event.hoster.firstName} ${event.hoster.lastName}</p>
-			<p><b>Date:</b> <fmt:formatDate pattern="MMMMMMM dd, yyyy" value="${event.date}"/></p>
-			<p><b>Location:</b> ${event.city}, ${event.state}</p>
-			<p><b>Number of people attending this event:</b> <c:out value="${event.joiners.size()}"/></p>
+			<h1>${event.name}</h1>
+			<p><span class="labels">Host:</span> ${event.hoster.firstName} ${event.hoster.lastName}</p>
+			<p><span class="labels">Date:</span> <fmt:formatDate pattern="MMMMMMM dd, yyyy" value="${event.date}"/></p>
+			<p><span class="labels">Location:</span> ${event.city}, ${event.state}</p>
+			<p><span class="labels">Number of people attending this event:</span> <c:out value="${event.joiners.size()}"/></p>
 			<br>
 			<c:if test="${event.joiners.size() == 0}">
-			<p>No joiners for this event yet</p>
+			<p class="error">No joiners for this event yet</p>
 			</c:if>
 			<c:if test="${event.joiners.size() > 0}">
-			<table class="table table-bordered" id="joiners">
+			<table class="table table-bordered table-dark" id="joiners">
 				<thead>
 					<tr>
 						<th>Name</th>
@@ -75,8 +106,7 @@
 			<h2>Message Wall</h2>
 			<div id="wall">
 				<c:forEach items="${event.messages}" var="msg">
-				<p>${msg.poster.firstName} says (<fmt:formatDate pattern="MMMM dd @ h:mm:ss aa" value="${msg.createdAt}"/>): ${msg.comment}</p>
-				<p>-----------------------</p>
+				<p class="message"><span class="poster">${msg.poster.firstName}</span> (<fmt:formatDate pattern="MMMM dd @ h:mm:ss aa" value="${msg.createdAt}"/>): ${msg.comment}</p><br>
 				</c:forEach>
 			</div>
 			<br>
@@ -89,9 +119,15 @@
 			<form:form action="/events/${event.id}/addmsg" method="post" modelAttribute="message">
 				<form:textarea path="comment" cssClass="form-control"></form:textarea>
 				<br>
-				<input type="submit" value="Post">
+				<input type="submit" class="btn btn-success" value="Post">
 			</form:form>
 		</div>
+		<div>
+			<img id="pic" src="${event.image}">
+		</div>
+	</div>
+	<div class="footer">
+		<p>Events tracker</p>
 	</div>
 </body>
 </html>

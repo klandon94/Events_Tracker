@@ -134,7 +134,7 @@ public class EventsController {
 	public String editEvent(@Valid @ModelAttribute("event") Event event, BindingResult result, @PathVariable(value="id") Long id, Model model) {
 		if (result.hasErrors()) return "editevent.jsp";
 		else {
-			eventServ.updateEvent(id, event.getName(), event.getDate(), event.getCity(), event.getState());
+			eventServ.updateEvent(id, event.getName(), event.getDate(), event.getCity(), event.getState(), event.getImage());
 			return "redirect:/events";
 		}
 	}
