@@ -236,7 +236,7 @@
 				<div class="form-group">
 	            	<form:label path="image">Image:</form:label>
 	            	<br>            	
-	            	<form:input path="image" cssClass="form-control"/>
+	            	<form:input path="image" cssClass="form-control" placeholder="image URL"/>
 	            </div>
 				<input type="submit" value="Create Event!" class="btn btn-primary">
 			</form:form>
